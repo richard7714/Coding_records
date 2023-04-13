@@ -1,43 +1,35 @@
 #include <string>
 #include <vector>
-#include <map>
+#include <unordered_set>
+#include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
 vector<int> solution(vector<int> lottos, vector<int> win_nums) {
     vector<int> answer;
-    map <int, int> win_table;
-    map <int, int> rank;
-    int win=0;
-    int possibilty=0;
+
+    int zeros = count(lottos.begin(),lottos.end(), 0);
     
-    for (auto idx = 0; idx < 6+1;idx++)
+    unordered_set<int> win_nums_set;
+    for (int num : win_nums)
     {
-        if(idx>5)
-            rank[6-idx] = 6;
-        else
-            rank[6-idx] = (idx+1);
-    }    
-    
-    for (auto idx = 0; idx < 6;idx++)
-    {
-        win_table[win_nums[idx]] = idx;
+        win_nums_set.insert(num);
     }
     
-    for (auto idx =0; idx <6; idx++)
+    int win = 0;
+    for (int num : lottos)
     {
-        if(win_table.find(lottos[idx])!=win_table.end())
+        if (win_nums_set.find(num) != win_nums_set.end())
         {
             win++;
         }
-        else if(lottos[idx] == 0)
-        {
-            possibilty++;
-        }
     }
     
-    answer.push_back(rank[win+possibilty]);
-    answer.push_back(rank[win]);
+    unordered_map <int,int> scores = {{0,6},{1,6},{2,5},{3,4},{4,3},{5,2}, {6,1}};
+    
+    answer.push_back(scores[win+zeros]);
+    answer.push_back(scores[win]);
     
     return answer;
 }
