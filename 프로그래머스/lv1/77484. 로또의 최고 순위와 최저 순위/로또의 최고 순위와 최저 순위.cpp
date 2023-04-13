@@ -9,20 +9,22 @@ vector<int> solution(vector<int> lottos, vector<int> win_nums) {
     map <int, int> win_table;
     map <int, int> rank;
     int win=0;
-    int lose=0;
+    int possibilty=0;
     
-    for (auto idx = 0; idx < win_nums.size();idx++)
+    for (auto idx = 0; idx < 6+1;idx++)
     {
-        rank[6-idx] = (idx+1);
+        if(idx>5)
+            rank[6-idx] = 6;
+        else
+            rank[6-idx] = (idx+1);
     }    
-    rank[0] = 6;
     
-    for (auto idx = 0; idx < win_nums.size();idx++)
+    for (auto idx = 0; idx < 6;idx++)
     {
         win_table[win_nums[idx]] = idx;
     }
     
-    for (auto idx =0; idx <lottos.size(); idx++)
+    for (auto idx =0; idx <6; idx++)
     {
         if(win_table.find(lottos[idx])!=win_table.end())
         {
@@ -30,11 +32,11 @@ vector<int> solution(vector<int> lottos, vector<int> win_nums) {
         }
         else if(lottos[idx] == 0)
         {
-        lose++;
+            possibilty++;
         }
     }
     
-    answer.push_back(rank[win+lose]);
+    answer.push_back(rank[win+possibilty]);
     answer.push_back(rank[win]);
     
     return answer;
