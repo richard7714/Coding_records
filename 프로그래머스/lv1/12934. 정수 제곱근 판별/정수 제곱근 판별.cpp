@@ -10,6 +10,8 @@ long long solution(long long n) {
     
     while(true)
     {
+        // n / temp == temp로 설정하는 경우, 소숫점이 절삭되어 오류 발생 가능 ex) 5/2 == 2
+        // long은 정수임!
         if(n == temp * temp)
         {
             answer = pow((temp+1),2);
