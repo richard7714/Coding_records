@@ -8,9 +8,6 @@ int solution(int n) {
     int answer = 0;
     unordered_set <int> candid;
     
-    if(!n)
-        return answer;
-    
     for (auto idx = 1; idx < n+1;idx++)
     {
         if(!(n%idx))
