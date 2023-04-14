@@ -6,31 +6,12 @@
 using namespace std;
 
 int solution(string s) {
+    
+    // c++11 이상부터는 string to int가 이미 정의되어 있다. 그대로 사용
     int answer = stoi(s);
-//     unordered_map <char,int> s2n = {{'0',0},{'1',1},{'2',2},{'3',3},{'4',4},{'5',5},{'6',6},{'7',7},{'8',8},{'9',9}};
     
-//     int index = s.size();
-//     bool isMinus;
-    
-//     for (char c : s)
-//     {   
-//         if(s2n.find(c) != s2n.end())
-//         {
-//             answer += s2n[c] * pow(10,(index-1));
-//         }
-//         else
-//         {
-//             if(c=='-')
-//                 isMinus = true;
-//             else
-//                 isMinus = false;
-//         }
-        
-//         index--;
-//     }
-    
-//     if(isMinus)
-//         answer = -answer;
-
+    // c++11 미만은 string을 char*로 바꾸고 char*를 int로 바꿔야함
+    // ch = s.c_str() => string -> char*
+    // n = atoi(ch) => char* -> int 
     return answer;
 }
