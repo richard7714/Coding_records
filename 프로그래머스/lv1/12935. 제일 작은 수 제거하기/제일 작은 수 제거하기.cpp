@@ -6,22 +6,14 @@
 using namespace std;
 
 vector<int> solution(vector<int> arr) {
-    vector<int> answer;
-        
-    vector<int> temp = arr;
+    vector<int> answer=arr;
     
-    sort(temp.begin(),temp.end());
-    reverse(temp.begin(),temp.end());
-    int poped = temp.back();
+    // arr내 최소값 찾기
+    int nMin = *min_element(arr.begin(),arr.end());
+    int pos = find(answer.begin(), answer.end(),nMin) - answer.begin();
     
-    auto it = find(arr.begin(),arr.end(),poped);
+    // 해당 위치의 element 제거
+    answer.erase(answer.begin() + pos);
     
-    arr.erase(it);
-    answer.resize(arr.size());
-    if(arr.size())
-        answer=arr;    
-    else
-        answer.push_back(-1);
-        
-    return answer;
+    return answer.empty() ? vector<int>(1,-1) : answer;
 }
