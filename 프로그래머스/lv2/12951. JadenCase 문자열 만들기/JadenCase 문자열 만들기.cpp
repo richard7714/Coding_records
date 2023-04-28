@@ -1,40 +1,19 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
 string solution(string s) {
+    string answer = "";
     
-    auto it = s.begin();
+    answer += toupper(s[0]);
     
-    while(it<s.end())
-    {
-        // 공백 넘기기
-        while(*it==' ')
-        {
-            if(it>=s.end())
-                return s;
-            it++;
-        }
+    // toupper, tolower 함수는 공백 or 숫자가 입력으로 들어오면 그대로 return한다.
+    // 맨앞은 upper로 만들고, 그뒤는 그전 공백 유무에 따라 대소 선택
+    for (int i = 1; i < s.size();i++)
+        s[i-1] == ' ' ? answer += toupper(s[i]) : answer += tolower(s[i]);
         
-        // 첫번째 단어가 숫자가 아닐시 대문자로 변경
-        if(*it-'9')
-        {
-            *it=toupper(*it);
-            it++;
-        }
-        
-        // 나머지는 소문자로
-        while(*it!=' ')
-        {
-            if(it>=s.end())
-                return s;
-            *it=tolower(*it);
-            it++;
-        }
-        
-    }
-    
-    return s;
+    return answer;
 }
