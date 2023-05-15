@@ -1,30 +1,33 @@
+// 제공된 정답
 #include <bits/stdc++.h>
 using namespace std;
+int n,m;
+string s;
 
-int N,M;
-map <string,string> pok_num;
-map <string,string> pok_name;
+// 이름을 key로 하는 map 생성
+map<string, int> mp;
+string a[1000004];
 
-int main()
-{
-    cin >> N >> M;
-    string pok_query[M];
-    string temp;
-    for(int i = 0; i<N; i++){
-        cin>>temp;
-        pok_num.insert({to_string(i+1),temp});
-        pok_name.insert({temp,to_string(i+1)});
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    cin >> n >> m;
+
+    // 입력받은 이름을 각 map에 기록
+    // 번호에 해당하는 이름 기록
+    for(int i = 0; i<n; i++){
+        cin >> s;
+        mp[s] = i + 1;
+        a[i+1]  = s;
     }
 
-    for(int i = 0; i<M; i++){
-        cin>>pok_query[i];
+    // atoi(s)가 0이다 == s는 숫자가 아니다
+    for(int i = 0; i< m; i++){
+        cin >> s;
+        if(atoi(s.c_str()) == 0){
+            cout << mp[s] << "\n";
+        }else{
+            cout << a[atoi(s.c_str())] << "\n";
+        }
     }
-    for(string q : pok_query)
-    {
-        if(pok_num.find(q)!= pok_num.end())
-            cout << pok_num[q] << "\n";
-        else if(pok_name.find(q) != pok_name.end())
-            cout << pok_name[q] << "\n";
-    }
-
 }
