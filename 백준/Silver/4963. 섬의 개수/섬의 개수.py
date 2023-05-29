@@ -53,10 +53,10 @@ while True:
                     ny = y+dy[k]
                     nx = x+dx[k]
                     if 0<=nx<w and 0<=ny<h and m[ny][nx] == 1:
+                        # 접근 시 바로 기록하기
                         m[ny][nx] = 2
                         dfs(ny,nx)
     ret.append(cnt)
     
 for i in ret:
     print(i)
-           
